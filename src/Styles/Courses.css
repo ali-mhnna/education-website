@@ -1,0 +1,126 @@
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 3rem 0;
+  text-align: center;
+  color: white;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.page-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.95;
+  margin-bottom: 1.5rem;
+}
+
+.courses-count {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.courses-count strong {
+  font-size: 1.3rem;
+  margin-right: 0.3rem;
+  color: #ffd700;
+}
+
+/* Courses Section */
+.courses-section {
+  padding: 3rem 0;
+  background: #f5f7fa;
+  min-height: 60vh;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Loading & Error (نفسهم من Home.css) */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.error-container {
+  text-align: center;
+  padding: 3rem;
+  color: #ff4757;
+  font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+  }
+
+  .courses-count {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .courses-count strong {
+    font-size: 1.1rem;
+  }
+
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 2rem 0;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .courses-section {
+    padding: 2rem 0;
+  }
+}

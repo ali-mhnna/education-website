@@ -1,0 +1,300 @@
+/* ===== Header Styles ===== */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo h2 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header .nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.header .nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  position: relative;
+}
+
+.header .nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.header .nav a.active {
+  background: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+/* أزرار تسجيل الدخول والتسجيل */
+.header .nav a.login-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+}
+
+.header .nav a.register-btn {
+  background: white;
+  color: #667eea;
+  border: 2px solid white;
+  font-weight: 600;
+}
+
+.header .nav a.register-btn:hover {
+  background: transparent;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .header .nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .header .nav a {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .header .logo h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header .nav {
+    gap: 0.5rem;
+  }
+
+  .header .nav a {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+
+
+
+
+
+/* ===== Header Styles ===== */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo a {
+  text-decoration: none;
+  color: white;
+}
+
+.header .logo h2 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header .nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.header .nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.header .nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.header .nav a.active {
+  background: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+/* أزرار تسجيل الدخول والتسجيل */
+.header .nav a.login-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+}
+
+.header .nav a.register-btn {
+  background: white;
+  color: #667eea;
+  border: 2px solid white;
+  font-weight: 600;
+}
+
+.header .nav a.register-btn:hover {
+  background: transparent;
+  color: white;
+}
+
+/* ===== اسم المستخدم وزر الخروج ===== */
+.header .nav .user-name {
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header .nav .user-name::before {
+  content: '👤';
+  font-size: 1rem;
+}
+
+.header .nav .logout-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.3rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.header .nav .logout-btn::before {
+  content: '🚪';
+  font-size: 1rem;
+}
+
+.header .nav .logout-btn:hover {
+  background: linear-gradient(135deg, #ff5252 0%, #d63031 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+  .header .nav {
+    gap: 1rem;
+  }
+
+  .header .nav .user-name {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .header .nav .logout-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .header .nav {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+  }
+
+  .header .nav a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .header .logo h2 {
+    font-size: 1.5rem;
+  }
+
+  .header .nav .user-name {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+  }
+
+  .header .nav .logout-btn {
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .header .nav {
+    gap: 0.5rem;
+  }
+
+  .header .nav a {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .header .nav .user-name::before,
+  .header .nav .logout-btn::before {
+    display: none;
+  }
+}
