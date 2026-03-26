@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookie from 'cookie-universal';
-export const baseUrl = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000/api';
+export const baseUrl = process.env.REACT_APP_API_URL || 'https://educational-website-backend-production-1db6.up.railway.app/api';
 const cookie = Cookie();
 
 const Axios = axios.create({
@@ -41,3 +41,5 @@ export const MY_COURSES = 'my-courses';
 export const ADMIN_ENROLLMENTS = 'admin/enrollments';
 export const ADMIN_COURSE_STUDENTS = 'admin/courses';
 export const INSTRUCTOR_BY_ID = 'instructors';
+
+console.log("Current API URL:", process.env.REACT_APP_API_URL);

@@ -2,31 +2,27 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function CourseInstructor({ instructor }) {
-   const navigate = useNavigate();
-  
-  const serverBaseUrl = "http://127.0.0.1:8000";
+  const navigate = useNavigate();
 
  
   const getAvatarUrl = (avatar) => {
-    if (!avatar) return "https://via.placeholder.com/100?text=No+Image";
-    if (avatar.startsWith("http")) return avatar;
-
-   
-    const cleanPath = avatar.startsWith("/") ? avatar : `/${avatar}`;
-    return `${serverBaseUrl}/storage${cleanPath}`;
+    return avatar || "https://via.placeholder.com/100?text=No+Image";
   };
+
   return (
     <div
       className="instructor-card-inline"
       onClick={() => navigate(`/instructors/${instructor.id}`)}
     >
- <div className="instructor-avatar-small">
-      <img
-       src={getAvatarUrl(instructor.avatar)}
-        alt={instructor.name}
-        onError={(e) => { e.target.src = "https://via.placeholder.com/100"; }}
-      />
-    </div>
+      <div className="instructor-avatar-small">
+        <img
+          src={getAvatarUrl(instructor.avatar)}
+          alt={instructor.name}
+          onError={(e) => {
+            e.target.src = "https://via.placeholder.com/100";
+          }}
+        />
+      </div>
       <div className="instructor-info-small">
         <p className="label">المدرب</p>
         <h4>{instructor.name}</h4>

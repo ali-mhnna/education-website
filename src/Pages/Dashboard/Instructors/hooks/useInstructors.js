@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import Axios, { INSTRUCTORS, ADMIN_INSTRUCTORS } from "../../../../Api/Api";
 
 export default function useInstructors() {
@@ -12,7 +11,6 @@ export default function useInstructors() {
 
   function loadInstructors() {
     setLoading(true);
- 
     Axios.get(`${INSTRUCTORS}`)
       .then((res) => {
         setInstructors(res.data);
@@ -24,49 +22,49 @@ export default function useInstructors() {
       });
   }
 
- async function handleSubmit(formData, editMode, currentInstructor) {
-  try {
   
-    const data = new FormData();
-    data.append("name", formData.name);
-    data.append("bio", formData.bio);
-    data.append("specialization", formData.specialization);
-    data.append("rating", formData.rating);
-    data.append("experience_years", formData.experience_years);
+  async function handleSubmit(formData, editMode, currentInstructor) {
+    try {
+    
+      const data = {
+        name: formData.name,
+        bio: formData.bio,
+        specialization: formData.specialization,
+        rating: formData.rating,
+        experience_years: formData.experience_years,
+        avatar: formData.avatar, 
+      };
 
-  
-    if (formData.avatar instanceof File) {
-      data.append("avatar", formData.avatar);
-    }
+     
+      if (editMode && !formData.avatar) {
+        delete data.avatar;
+      }
 
-    let response;
-    if (editMode) {
-  
-      response = await Axios.post(`${ADMIN_INSTRUCTORS}/${currentInstructor.id}?_method=PUT`, data, {
-        headers: { "Content-Type": "multipart/form-data" }
-      });
-    } else {
-      response = await Axios.post(`${ADMIN_INSTRUCTORS}`, data, {
-        headers: { "Content-Type": "multipart/form-data" }
-      });
-    }
+      let response;
+      if (editMode) {
+        response = await Axios.put(
+          `${ADMIN_INSTRUCTORS}/${currentInstructor.id}`,
+          data
+        );
+      } else {
+        response = await Axios.post(`${ADMIN_INSTRUCTORS}`, data);
+      }
 
-    alert(editMode ? "تم تعديل المدرس بنجاح ✅" : "تم إضافة المدرس بنجاح ✅");
-    loadInstructors();
-    return true;
-  } catch (error) {
-   
-    if (error.response && error.response.data.errors) {
-      console.table(error.response.data.errors); 
-      const firstError = Object.values(error.response.data.errors)[0][0];
-      alert(`خطأ في البيانات: ${firstError}`);
-    } else {
-      alert("حدث خطأ غير متوقع في السيرفر");
+      alert(editMode ? "تم تعديل المدرس بنجاح ✅" : "تم إضافة المدرس بنجاح ✅");
+      loadInstructors();
+      return true;
+    } catch (error) {
+      if (error.response && error.response.data.errors) {
+        console.table(error.response.data.errors);
+        const firstError = Object.values(error.response.data.errors)[0][0];
+        alert(`خطأ في البيانات: ${firstError}`);
+      } else {
+        alert("حدث خطأ غير متوقع في السيرفر");
+      }
+      return false;
     }
-    return false;
   }
-}
-  
+
   async function handleDelete(id, name) {
     if (!window.confirm(`هل أنت متأكد من حذف المدرس "${name}"؟`)) {
       return;

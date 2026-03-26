@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import Axios, { INSTRUCTOR_BY_ID } from '../../Api/Api';
-import CourseCard from '../../Components/CourseCard';
-import '../../Styles/InstructorDetails.css';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Axios, { INSTRUCTOR_BY_ID } from "../../Api/Api";
+import CourseCard from "../../Components/CourseCard";
+import "../../Styles/InstructorDetails.css";
 
 export default function InstructorDetails() {
   const { id } = useParams();
@@ -12,17 +12,15 @@ export default function InstructorDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  
   useEffect(() => {
-    
     Axios.get(`${INSTRUCTOR_BY_ID}/${id}`)
-      .then(res => {
+      .then((res) => {
         setInstructor(res.data);
         setLoading(false);
       })
-      .catch(err => {
-        console.error('Error:', err);
-        setError('المدرس غير موجود');
+      .catch((err) => {
+        console.error("Error:", err);
+        setError("المدرس غير موجود");
         setLoading(false);
       });
   }, [id]);
@@ -40,7 +38,7 @@ export default function InstructorDetails() {
     return (
       <div className="error-container">
         <h2>😕 {error}</h2>
-        <button onClick={() => navigate('/instructors')} className="back-btn">
+        <button onClick={() => navigate("/instructors")} className="back-btn">
           العودة للمدرسين
         </button>
       </div>
@@ -57,14 +55,9 @@ export default function InstructorDetails() {
           </button>
 
           <div className="instructor-hero-content">
-            <div className="instructor-avatar-large">
-              <img 
-                src={instructor.avatar || 'https://via.placeholder.com/400'} 
-                alt={instructor.name}
-                onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/400?text=No+Image';
-                }}
-              />
+            <div className="instructor-avatar-placeholder">
+              {/* عرض أول حرف من اسم المدرس بدلاً من الصورة */}
+              <span>{instructor.name.charAt(0)}</span>
             </div>
 
             <div className="instructor-hero-info">
@@ -83,7 +76,9 @@ export default function InstructorDetails() {
                 <div className="stat-box">
                   <span className="stat-icon">💼</span>
                   <div>
-                    <span className="stat-value">{instructor.experience_years}</span>
+                    <span className="stat-value">
+                      {instructor.experience_years}
+                    </span>
                     <span className="stat-label">سنوات الخبرة</span>
                   </div>
                 </div>
@@ -91,7 +86,9 @@ export default function InstructorDetails() {
                 <div className="stat-box">
                   <span className="stat-icon">📚</span>
                   <div>
-                    <span className="stat-value">{instructor.courses?.length || 0}</span>
+                    <span className="stat-value">
+                      {instructor.courses?.length || 0}
+                    </span>
                     <span className="stat-label">كورس</span>
                   </div>
                 </div>
@@ -120,7 +117,7 @@ export default function InstructorDetails() {
 
           {instructor.courses && instructor.courses.length > 0 ? (
             <div className="courses-grid">
-              {instructor.courses.map(course => (
+              {instructor.courses.map((course) => (
                 <CourseCard key={course.id} data={course} />
               ))}
             </div>

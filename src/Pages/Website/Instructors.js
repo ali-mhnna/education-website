@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios, { INSTRUCTORS } from "../../Api/Api";
 import "../../Styles/Instructors.css";
-const fallbackImage =
 
+const fallbackImage =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='45%25' font-size='60' text-anchor='middle' dominant-baseline='middle' fill='%23999'%3E%F0%9F%91%A4%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23666'%3ENo Image%3C/text%3E%3C/svg%3E";
-const serverBaseUrl = "http://127.0.0.1:8000";
+
+
 
 export default function Instructors() {
   const navigate = useNavigate();
@@ -63,15 +64,13 @@ export default function Instructors() {
                 onClick={() => navigate(`/instructors/${instructor.id}`)}
               >
                 <div className="instructor-avatar">
+                
                   <img
-                    src={
-                      instructor.avatar
-                        ? instructor.avatar.startsWith("http")
-                          ? instructor.avatar
-                          : `${serverBaseUrl}/storage/${instructor.avatar}`
-                        : fallbackImage
-                    }
+                    src={instructor.avatar || fallbackImage}
                     alt={instructor.name}
+                    onError={(e) => {
+                      e.target.src = fallbackImage;
+                    }}
                   />
                 </div>
 

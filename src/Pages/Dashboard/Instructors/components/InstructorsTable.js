@@ -1,14 +1,9 @@
 import React from "react";
 
-
 const fallbackAvatar = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%23e8e8e8'/%3E%3Ctext x='50%25' y='50%25' font-size='24' text-anchor='middle' dominant-baseline='middle' fill='%23999'%3E%F0%9F%91%A4%3C/text%3E%3C/svg%3E";
 
 export default function InstructorsTable({ instructors, onEdit, onDelete }) {
-  
 
-  const serverBaseUrl = process.env.REACT_APP_API_URL 
-    ? process.env.REACT_APP_API_URL.replace('/api', '') 
-    : 'http://127.0.0.1:8000';
 
   return (
     <div className="table-container">
@@ -27,11 +22,7 @@ export default function InstructorsTable({ instructors, onEdit, onDelete }) {
         <tbody>
           {instructors.map((instructor) => {
           
-            const avatarUrl = instructor.avatar 
-              ? (instructor.avatar.startsWith('http') 
-                  ? instructor.avatar 
-                  : `${serverBaseUrl}${instructor.avatar}`)
-              : fallbackAvatar;
+            const avatarUrl = instructor.avatar || fallbackAvatar;
 
             return (
               <tr key={instructor.id}>
@@ -41,7 +32,7 @@ export default function InstructorsTable({ instructors, onEdit, onDelete }) {
                       src={avatarUrl}
                       alt={instructor.name}
                       onError={(e) => {
-                        e.target.onerror = null; 
+                        e.target.onerror = null;
                         e.target.src = fallbackAvatar;
                       }}
                     />

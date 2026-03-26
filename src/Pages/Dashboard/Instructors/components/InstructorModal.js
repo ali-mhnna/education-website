@@ -13,7 +13,7 @@ export default function InstructorModal({
     specialization: "",
     rating: "",
     experience_years: "",
-    avatar: null,
+    avatar: "", 
   });
   const [formLoading, setFormLoading] = useState(false);
 
@@ -25,7 +25,7 @@ export default function InstructorModal({
         specialization: currentInstructor.specialization,
         rating: currentInstructor.rating,
         experience_years: currentInstructor.experience_years,
-        avatar: null,
+        avatar: currentInstructor.avatar || "", 
       });
     } else {
       setFormData({
@@ -34,7 +34,7 @@ export default function InstructorModal({
         specialization: "",
         rating: "",
         experience_years: "",
-        avatar: null,
+        avatar: "",
       });
     }
   }, [editMode, currentInstructor]);
@@ -48,13 +48,7 @@ export default function InstructorModal({
     });
   }
 
-  // handleFileChange
-  function handleFileChange(e) {
-    setFormData({
-      ...formData,
-      avatar: e.target.files[0],
-    });
-  }
+ 
 
   // handleFormSubmit
   async function handleFormSubmit(e) {
@@ -146,13 +140,16 @@ export default function InstructorModal({
             </div>
           </div>
 
+          {/* ✅ تعديل: صار input url بدل file */}
           <div className="form-group">
-            <label>صورة المدرس {editMode && "(اختياري للتعديل)"}</label>
+            <label>رابط صورة المدرس *</label>
             <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
+              type="url"
+              name="avatar"
+              value={formData.avatar}
+              onChange={handleChange}
               required={!editMode}
+              placeholder="https://example.com/image.jpg"
             />
             {editMode && currentInstructor?.avatar && (
               <div className="current-image">
